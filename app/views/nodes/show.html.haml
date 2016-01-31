@@ -1,1 +1,22 @@
 %h4 Managing #{@node.base_url}
+
+- if @stats
+  %table.stack
+    %tr
+      %th Disk usage
+      %td #{@stats['uw_diskused_perc']}%
+    %tr
+      %th CPU load
+      %td #{@stats['uw_cpuused']}%
+    %tr
+      %th Top 3 CPU hungry processes
+      %td= @stats['uw_cputop'].first(3).map{|x| x[0]}.join ', '
+    %tr
+      %th Top 3 memory hungry processes
+      %td= @stats['uw_memtop'].first(3).map{|x| x[0]}.join ', '
+- else
+  %p An error occurred while fetching the stats data
+
+= link_to 'Shut down the node', 'javascript:void(0)', method: :post, class: 'alert button', disabled: !@node.shutdown_allowed?, data: { 'shutdown-node' => @node.to_param, 'base-url' => @node.base_url }
+
+= link_to 'Return to the list of nodes', :nodes, class: 'secondary hollow button'

@@ -4,6 +4,8 @@
   - @nodes.each do |node|
     %tr
       %td= link_to node.base_url, node
-      %td!= link_to 'delete', node_path(node), method: :delete, data: { confirm: 'please confirm' }
+      %td
+        != link_to 'javascript: void(0)', class: 'delete-knob', title: 'Delete this node', method: :delete, data: { 'delete-node' => node.to_param, 'base-url' => node.base_url } do
+          &times;
 
 = link_to 'New node', :new_node, class: 'button'

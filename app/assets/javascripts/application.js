@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require sweetalert.min
 //= require_tree ./autoload
 //= require_self
 
