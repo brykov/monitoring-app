@@ -1,6 +1,9 @@
 %h1 Highest CPU load
 
-%p Highest CPU consumption is registered on the node #{link_to @node.base_url, @node}: #{@node.stats['uw_cpuused']}%
+- if @node.present?
+  %p Highest CPU consumption is registered on the node #{link_to @node.base_url, @node}: #{@node.stats['uw_cpuused']}%
+- else
+  %p It seems there is no data to display yet.
 
 %p
   = link_to 'Back to the list of nodes', :nodes
