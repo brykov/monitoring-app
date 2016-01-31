@@ -1,5 +1,6 @@
 %h1 Node list
 
+
 %table
   - @nodes.each do |node|
     %tr
@@ -9,3 +10,9 @@
           &times;
 
 = link_to 'New node', :new_node, class: 'button'
+
+%hr/
+
+%h3 Reports
+%p
+  = link_to 'A node with highest CPU load', '/'

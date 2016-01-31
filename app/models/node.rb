@@ -3,6 +3,7 @@ require 'net/http'
 class Node
   include Mongoid::Document
   field :base_url, type: String
+  validates_format_of :base_url, with: /\Ahttp[s]?:\/\/\S+\Z/
 
   attr_accessor :_stats
 

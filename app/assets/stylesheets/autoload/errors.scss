@@ -1,0 +1,13 @@
+@import "../settings";
+.input {
+  .error {
+    background: $alert-color;
+    color: #fff;
+    display: block;
+    margin: -1em 0 1em 0;
+    padding: 0 1em;
+    line-height: 1.5;
+    font-size: $global-font-size;
+  }
+
+}

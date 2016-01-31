@@ -8,8 +8,13 @@ class NodesController < ApplicationController
   end
 
   def create
-    @node = Node.create! params.require(:node).permit(:base_url)
-    redirect_to :nodes, flash: { success: 'A node was created' }
+    @node = Node.new params.require(:node).permit(:base_url)
+    if @node.valid?
+      @node.save
+      redirect_to :nodes, flash: { success: 'A node was created' }
+    else
+      render :new
+    end
   end
 
   def show
