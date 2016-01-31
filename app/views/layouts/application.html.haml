@@ -7,4 +7,7 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    = yield
+    .row.medium-8.large-7.columns
+      - flash.each do |name, msg|
+        %div{class: [name, 'callout']}= msg
+      = yield

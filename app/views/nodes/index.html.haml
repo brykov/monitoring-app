@@ -1,2 +1,9 @@
-%h1 Nodes#index
-%p Find me in app/views/nodes/index.html.haml
+%h1 Node list
+
+%table
+  - @nodes.each do |node|
+    %tr
+      %td= link_to node.base_url, node
+      %td!= link_to 'delete', node_path(node), method: :delete, data: { confirm: 'please confirm' }
+
+= link_to 'New node', :new_node, class: 'button'

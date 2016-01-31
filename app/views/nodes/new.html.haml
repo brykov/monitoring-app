@@ -1,6 +1,5 @@
-%h1 Nodes#new
-%p Find me in app/views/nodes/new.html.haml
+%h1 New node
 
-= semantic_form_for @node do |f|
-  = f.inputs :base_url
-  = f.actions
+= simple_form_for @node do |f|
+  = f.input :base_url
+  = f.button :submit
