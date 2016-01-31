@@ -7,7 +7,13 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    .row.medium-8.large-7.columns
+    .top-bar
+      .top-bar-left
+        %ul.menu
+          %li
+            %strong Crossover Trial 1.0
+          %li= link_to 'Nodes', :nodes
+    .row.medium-9.large-8.columns
       - flash.each do |name, msg|
         %div{class: [name, 'callout']}= msg
       = yield

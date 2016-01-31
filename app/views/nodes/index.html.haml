@@ -1,10 +1,15 @@
-%h1 Node list
+%h1 Nodes list
 
 
 %table
+  %tr
+    %th Node
+    %th Status
+    %th Actions
   - @nodes.each do |node|
     %tr
-      %td= link_to node.base_url, node
+      %td= node.alive? ? link_to(node.base_url, node) : node.base_url
+      %td= node.alive? ? 'Up' : 'Down'
       %td
         != link_to 'javascript: void(0)', class: 'delete-knob', title: 'Delete this node', method: :delete, data: { 'delete-node' => node.to_param, 'base-url' => node.base_url } do
           &times;
@@ -15,4 +20,6 @@
 
 %h3 Reports
 %p
-  = link_to 'A node with highest CPU load', '/'
+  = link_to 'A node with highest CPU load', :highest_cpu_report
+  &emsp;|&emsp;
+  = link_to 'Low disk space nodes', :low_disk_space_report

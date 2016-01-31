@@ -6,13 +6,14 @@ class Node
   validates_format_of :base_url, with: /\Ahttp[s]?:\/\/\S+\Z/
 
   attr_accessor :_stats
+  attr_accessor :_alive
 
   def action_url(action)
     "#{self.base_url.sub(/\/+$/, '')}/#{action}"
   end
 
   def stats
-    self._stats ||= JSON.parse(open(self.action_url('stats')).gets) rescue nil
+    self._stats ||= JSON.parse(open(self.action_url('stats'), read_timeout: 5 ).gets) rescue nil
     self._stats
   end
 
@@ -25,6 +26,11 @@ class Node
 
   def shutdown_allowed?
     self.stats['uw_cpuused'] > 70
+  end
+
+  def alive?
+    self._alive ||= open(self.action_url('status'), read_timeout: 4 ).gets rescue nil
+    self._alive == 'ALIVE'
   end
 
 end

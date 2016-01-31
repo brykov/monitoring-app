@@ -1,0 +1,17 @@
+%h1 Low disk space
+
+- if @nodes.count > 0
+  %p Below are listed nodes with low free disk space
+  %table
+    %tr
+      %th Node
+      %th Disk usage
+    - @nodes.each do |node|
+      %tr
+        %td= link_to node.base_url, node
+        %td #{node.stats['uw_diskused_perc']}%
+- else
+  %p All nodes seem to be fine
+
+%p
+  = link_to 'Back to the list of nodes', :nodes
